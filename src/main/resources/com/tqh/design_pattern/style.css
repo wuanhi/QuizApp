@@ -1,0 +1,28 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jun 21, 2025, 9:55:03 PM
+    Author     : Wuan Hi Dep Trai
+*/
+
+.main{
+    -fx-background-color: lightblue;
+    -fx-padding: 10;
+    -fx-alignment: CENTER; 
+    -fx-spacing: 10;
+}
+.title{
+    -fx-font-size: 35; 
+    -fx-fill: red; 
+    -fx-stroke: antiquewhite;
+    -fx-stroke-width: 4;
+}
+.button{
+    -fx-font-size: 18;
+    -fx-background-color: darkcyan;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 250;
+}

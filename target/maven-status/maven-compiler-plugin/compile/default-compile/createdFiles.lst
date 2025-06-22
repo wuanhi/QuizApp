@@ -1,0 +1,9 @@
+com\tqh\utils\JdbcConnector.class
+com\tqh\utils\MyAlert.class
+com\tqh\pojo\Category.class
+com\tqh\design_pattern\QuestionsManagementController.class
+com\tqh\design_pattern\App.class
+com\tqh\design_pattern\SecondaryController.class
+module-info.class
+com\tqh\services\CategoryService.class
+com\tqh\design_pattern\PrimaryController.class
