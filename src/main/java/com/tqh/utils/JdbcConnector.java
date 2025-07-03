@@ -25,7 +25,7 @@ public class JdbcConnector {
         }
     }
     private JdbcConnector() throws SQLException{
-        this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quizapp", "root", "Mysqlserver123$");
+        this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quizdb", "root", "root");
     }
     public static JdbcConnector getInstance() throws SQLException{
         if(instance == null){
