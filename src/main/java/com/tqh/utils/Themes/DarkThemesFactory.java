@@ -2,17 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.tqh.themes;
+package com.tqh.utils.Themes;
 
 import com.tqh.design_pattern.App;
 
 /**
  *
- * @author admin
+ * @author Wuan Hi Dep Trai
  */
-public class LightThemeFactory implements ThemeFactory {
+public class DarkThemesFactory implements ThemesFactory {
+
     @Override
     public String getStyleSheet() {
-        return App.class.getResource("light.css").toExternalForm();
+        return App.class.getResource("darkTheme.css").toExternalForm();
     }
 }

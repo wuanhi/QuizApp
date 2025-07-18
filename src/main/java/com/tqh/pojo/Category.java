@@ -4,15 +4,12 @@
  */
 package com.tqh.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author Wuan Hi Dep Trai
  */
-@Getter
-@Setter
+
 public class Category {
 
     private int id;
@@ -25,7 +22,23 @@ public class Category {
 
     @Override
     public String toString() {
-        return String.format("%d - %s\n", this.id, this.name);
+        return String.format("%d - %s\n", this.getId(), this.getName());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

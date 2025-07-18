@@ -25,7 +25,7 @@ public class JdbcConnector {
         }
     }
     private JdbcConnector() throws SQLException{
-        this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quizdb", "root", "root");
+        this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quizapp", "root", "Mysqlserver123$");
     }
     public static JdbcConnector getInstance() throws SQLException{
         if(instance == null){
@@ -34,11 +34,15 @@ public class JdbcConnector {
         return instance;
     }
     
-    public Connection connect(){
-        return JdbcConnector.conn; 
+    public Connection connect() throws SQLException{
+        if (conn == null || conn.isClosed()) {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quizapp", "root", "Mysqlserver123$");
+        }
+        return conn; 
     }
     
     public void close() throws SQLException{
-        this.conn.close();
+        if (this.conn != null)
+            this.conn.close();
     }
 }

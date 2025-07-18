@@ -5,7 +5,7 @@
 package com.tqh.utils;
 
 import com.tqh.design_pattern.App;
-import com.tqh.themes.ThemeManager;
+import com.tqh.utils.Themes.ThemesManager;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,29 +13,33 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author admin
+ * @author Wuan Hi Dep Trai
  */
 public class MyStage {
+
     private static MyStage instance;
-    private static Scene scene; 
-    private final Stage stage; 
-    private MyStage (){
+    private final Stage stage;
+    private static Scene scene;
+
+    private MyStage() {
         stage = new Stage();
-        stage.setTitle("QuizApp");
+        stage.setTitle("Quiz App");
     }
-    
-    public static MyStage getInstance(){
-        if (instance == null)
-            instance = new MyStage(); 
-        return instance; 
-    } 
-    
-    public void showStage(String fxml) throws IOException{
-        if(scene == null)
+
+    public static MyStage getInstance() {
+        if (instance == null) {
+            return instance = new MyStage();
+        }
+        return instance;
+    }
+
+    public void showStage(String fxml) throws IOException {
+        if (scene == null) {
             scene = new Scene(new FXMLLoader(App.class.getResource(fxml)).load());
-        else 
+        } else {
             scene.setRoot(new FXMLLoader(App.class.getResource(fxml)).load());
-        ThemeManager.applyTheme(scene);
+        }
+        ThemesManager.applyTheme(scene);
         this.stage.setScene(scene);
         this.stage.show();
     }

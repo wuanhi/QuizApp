@@ -4,68 +4,54 @@
  */
 package com.tqh.pojo;
 
-
-
 /**
  *
- * @author admin
+ * @author Wuan Hi Dep Trai
  */
-public class Levels {
+public class Level {
+    
+    private int id;
+    private String name;
+    private String note;
 
-    private int id; 
-    private String name; 
-    private String note; 
-
-    public Levels(int id, String name, String note) {
+    public Level(int id, String name, String note) {
         this.id = id;
         this.name = name;
         this.note = note;
     }
 
-     public Levels(String name, String note) {
+    public Level(String name, String note) {
         this.name = name;
         this.note = note;
     }
-    
-    /**
-     * @return the id
-     */
+
+    @Override
+    public String toString() {
+        return this.name; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
     public int getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return the note
-     */
     public String getNote() {
         return note;
     }
 
-    /**
-     * @param note the note to set
-     */
     public void setNote(String note) {
         this.note = note;
     }
+
 }

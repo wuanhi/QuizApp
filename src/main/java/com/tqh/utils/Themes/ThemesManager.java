@@ -2,23 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.tqh.themes;
+package com.tqh.utils.Themes;
 
-import com.tqh.design_pattern.App;
 import javafx.scene.Scene;
 
 /**
  *
- * @author admin
+ * @author Wuan Hi Dep Trai
  */
-public class ThemeManager {
+public class ThemesManager {
 
-    private static ThemeFactory themeFactory = new DefaultThemeFactory();
+    private static ThemesFactory themeFactory = new DefaultThemesFactory();
 
-    /**
-     * @param aThemeFactory the themeFactory to set
-     */
-    public static void setThemeFactory(ThemeFactory aThemeFactory) {
+    public ThemesManager() {
+    }
+
+    public static void setThemeFactory(ThemesFactory aThemeFactory) {
         themeFactory = aThemeFactory;
     }
 
@@ -26,5 +25,4 @@ public class ThemeManager {
         scene.getRoot().getStylesheets().clear();
         scene.getRoot().getStylesheets().add(themeFactory.getStyleSheet());
     }
-
 }

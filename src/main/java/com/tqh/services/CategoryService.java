@@ -13,14 +13,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author Wuan Hi Dep Trai
  */
 public class CategoryService {
 
-    public static List<Category> getCates() throws SQLException {
+    public  List<Category> getCates() throws SQLException {
         List<Category> cates;
         try (Connection conn = JdbcConnector.getInstance().connect()) {
             Statement stmt = conn.createStatement();

@@ -4,8 +4,7 @@
  */
 package com.tqh.services;
 
-
-import com.tqh.pojo.Levels;
+import com.tqh.pojo.Level;
 import com.tqh.utils.JdbcConnector;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,23 +15,27 @@ import java.util.List;
 
 /**
  *
- * @author admin
+ * @author Wuan Hi Dep Trai
  */
-public class LevelsService {
-    public static List<Levels> getLevels() throws SQLException {
-        List<Levels> levels;
+public class LevelService {
+
+    public List<Level> getLevels() throws SQLException {
+        List<Level> levels;
         try (Connection conn = JdbcConnector.getInstance().connect()) {
             Statement stmt = conn.createStatement();
+            System.out.println("Connection successful!");
             ResultSet rs = stmt.executeQuery("SELECT * FROM level");
             levels = new ArrayList<>();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String note = rs.getString("note"); 
-                Levels c = new Levels(id, name, note);
+                String note = rs.getString("note");
+                Level c = new Level(id, name, note);
                 levels.add(c);
+                System.out.println("Added level: " + name);
             }
         }
+        System.out.println("Total levels found: " + levels.size());
         return levels;
     }
 }

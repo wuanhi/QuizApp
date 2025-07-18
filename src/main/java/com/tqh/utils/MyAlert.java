@@ -4,7 +4,10 @@
  */
 package com.tqh.utils;
 
+import java.util.Optional;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -25,5 +28,11 @@ public class MyAlert {
     public void showMessage(String text){
         this.alert.setContentText(text);
         this.alert.showAndWait();
+    }
+    
+    public Optional<ButtonType> showMessage(String text, Alert.AlertType type){
+        this.alert.setContentText(text);
+        this.alert.setAlertType(type);
+        return this.alert.showAndWait();
     }
 }
