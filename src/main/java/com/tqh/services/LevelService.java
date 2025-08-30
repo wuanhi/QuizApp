@@ -7,35 +7,37 @@ package com.tqh.services;
 import com.tqh.pojo.Level;
 import com.tqh.utils.JdbcConnector;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Wuan Hi Dep Trai
  */
-public class LevelService {
+public class LevelService extends BaseServicesTemplateMethod<Level> {
 
-    public List<Level> getLevels() throws SQLException {
-        List<Level> levels;
-        try (Connection conn = JdbcConnector.getInstance().connect()) {
-            Statement stmt = conn.createStatement();
-            System.out.println("Connection successful!");
-            ResultSet rs = stmt.executeQuery("SELECT * FROM level");
-            levels = new ArrayList<>();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String note = rs.getString("note");
-                Level c = new Level(id, name, note);
-                levels.add(c);
-                System.out.println("Added level: " + name);
-            }
-        }
-        System.out.println("Total levels found: " + levels.size());
-        return levels;
+    @Override
+    public PreparedStatement getStm(Connection conn) throws SQLException {
+        return conn.prepareCall("SELECT * FROM level"); 
     }
+
+    @Override
+    public List<Level> getResults(ResultSet rs) throws SQLException {
+        List<Level> levels = new ArrayList<>(); 
+        while (rs.next()) {
+            int id = rs.getInt("id"); 
+            String name = rs.getString("name"); 
+            String note = rs.getString("note"); 
+            Level lv = new Level(id, name, note); 
+            levels.add(lv); 
+        }
+        return levels; 
+    }
+    
+    
 }

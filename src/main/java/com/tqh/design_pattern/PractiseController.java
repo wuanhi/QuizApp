@@ -4,17 +4,26 @@
  */
 package com.tqh.design_pattern;
 
+import com.tqh.pojo.Category;
+import com.tqh.pojo.Level;
 import com.tqh.pojo.Question;
+import com.tqh.services.question.BaseQuestionService;
+import com.tqh.services.question.Decorator.CategoryQuestionServiceDecorator;
+import com.tqh.services.question.Decorator.LevelQuestionServiceDecorator;
+import com.tqh.services.question.Decorator.LimitedQuestionServiceDecorator;
 import com.tqh.utils.Configs;
+import com.tqh.utils.FlyweightFactory;
 import com.tqh.utils.MyAlert;
 import java.io.ObjectInputFilter;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -46,15 +55,34 @@ public class PractiseController implements Initializable {
     private List<Question> questions;
     private int currentQuestion;
 
+    @FXML
+    private ComboBox<Category> cbCatesSearch;
+
+    @FXML
+    private ComboBox<Level> cblevelsSearch;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            this.cbCatesSearch.setItems(FXCollections.observableList(FlyweightFactory.getCache(Configs.cateService, "categories")));
+            this.cblevelsSearch.setItems(FXCollections.observableList(FlyweightFactory.getCache(Configs.levelService, "levels")));
+        } catch (SQLException e) {e.printStackTrace();}
     }
 
     public void handleStart(ActionEvent event) throws SQLException {
         try {
             int num = Integer.parseInt(this.txtNum.getText());
-            questions = Configs.questionService.getQuestions(num);
+            BaseQuestionService b = Configs.questionService; 
+            Category c = this.cbCatesSearch.getSelectionModel().getSelectedItem(); 
+            if (c != null)
+                b = new CategoryQuestionServiceDecorator(c.getId(), b);
+            Level lv = this.cblevelsSearch.getSelectionModel().getSelectedItem(); 
+            if (lv != null)
+                b = new LevelQuestionServiceDecorator(lv.getId(), b); 
+            b = new LimitedQuestionServiceDecorator(num, b);
+            questions = b.getList();
+            this.currentQuestion = 0; 
             loadQuestion();
         } catch (NumberFormatException ex) {
             MyAlert.getInstance().showMessage("Vui lòng nhập số nguyên!");

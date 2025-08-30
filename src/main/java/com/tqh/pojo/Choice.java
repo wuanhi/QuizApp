@@ -49,6 +49,4 @@ public class Choice {
         this.is_correct = is_correct;
     }
 
-   
-
 }

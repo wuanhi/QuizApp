@@ -6,7 +6,9 @@ package com.tqh.utils;
 
 import com.tqh.services.CategoryService;
 import com.tqh.services.LevelService;
-import com.tqh.services.QuestionService;
+import com.tqh.services.question.BaseQuestionService;
+import com.tqh.services.question.QuestionService;
+import com.tqh.services.question.UpdateQuestionService;
 
 /**
  *
@@ -15,7 +17,8 @@ import com.tqh.services.QuestionService;
 public class Configs {
 
     public static final CategoryService cateService = new CategoryService();
-    public static final QuestionService questionService = new QuestionService();
+    public static final BaseQuestionService questionService = new QuestionService();
+    public static final UpdateQuestionService updateQuestionService = new UpdateQuestionService();
     public static final LevelService levelService = new LevelService();
     
 }

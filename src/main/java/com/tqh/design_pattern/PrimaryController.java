@@ -34,8 +34,8 @@ public class PrimaryController implements Initializable {
         MyStage.getInstance().showStage("questions.fxml");
     }
     
-    public void handlePractice(ActionEvent event){
-        MyAlert.getInstance().showMessage("Coming soon ... ");
+    public void handlePractice(ActionEvent event) throws IOException{
+        MyStage.getInstance().showStage("practise.fxml");
     }
     
     public void handleTest(ActionEvent event){
